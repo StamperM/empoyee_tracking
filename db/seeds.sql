@@ -7,8 +7,6 @@ VALUES("Discovery"),
 
 
 
-
-
 INSERT INTO role(title,salary,department_id)
 VALUES("Director",200000.00,1),
       ("Director",200000.00,2),
