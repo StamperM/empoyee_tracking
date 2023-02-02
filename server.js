@@ -6,7 +6,7 @@ const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const { appendFile } = require("fs");
 const app = express();
-
+const prompt = inquirer.createPromptModule();
 // connects to the database
 const db = mysql.createConnection(
     {
@@ -16,6 +16,8 @@ const db = mysql.createConnection(
         database: employee_tracker
     }
 )
+prompt(questions)
+.then();
 // allows use of json objects and to return a post
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
