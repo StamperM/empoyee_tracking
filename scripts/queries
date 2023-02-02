@@ -1,0 +1,20 @@
+
+const showAllEmployees =()=>{
+    app.get('api/employee-tracker/employee',(res,req)=>{
+        const sql=`SELECT * FROM employee`;
+    
+        db.query(sql,(err,rows) => {
+            if(err){
+                res.statusCode(500).json({error:err.message});
+                return;
+            }
+            res.json({message: "succes",
+                       data: body});
+        });
+    }); 
+}
+
+const showAllDepartments =() => {
+    app.get('api/employee_tracker/department'(res,req))
+
+}
