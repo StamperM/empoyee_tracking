@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // manager prompts/questions to navigate things to do
 function employeeTrackerInfo() {
-  inquirer.prompt(optionList).
+  prompt(optionList).
   then((answers) => {
     switch (answers.selection) {
       case "View all departments":
@@ -40,7 +40,7 @@ function employeeTrackerInfo() {
             viewAllEmployees();
             break;
     case "Add a department":
-        inquirer.prompt(newDepartment).
+        prompt(newDepartment).
   then((answers) =>{
 
         addDepartment(answers);})
@@ -52,7 +52,7 @@ function employeeTrackerInfo() {
        
         break;
     case "Add an employee":
-        inquirer.prompt(newEmplo).then((answers)=>{ 
+        prompt(newEmployee).then((answers)=>{ 
         addEmployee(answers);
   }
 );
@@ -62,7 +62,8 @@ function employeeTrackerInfo() {
 
 function init() {
   employeeTrackerInfo();
-}
+};
+
 init();
 
 app.listen(PORT, () => console.log("listening"));

@@ -1,11 +1,6 @@
 
 const optionList= [
-    // {
-    //     type:"confirm",
-    //     name:"kickoff",
-    //     message: "Would you like to use the employee tracker?",
-
-    // },
+  
     {
         type:"choice",
         message:"What would you like to view?",
