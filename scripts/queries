@@ -5,8 +5,10 @@ const cTable = require('console.table');
 const connection = mysql.createConnection({
   host: '127.0.0.1',
   user: 'root',
-  database: 'tracker_db'
+  database: 'tracker_db',
+  rowsAsArray:true
 });
+
 
 // query all departments
 const allDepartments = () =>{
@@ -42,17 +44,54 @@ console.table([values]);
       function(err, results) {
         console.log(results); // results contains rows returned by server
         let values = [results];
-    console.table([tfirst_name,last_name,role_id,Manager],values);
+    console.table([first_name,last_name,role_id,Manager],values);
       }
     );
     }
   
 //query add department
+const addDepartment =(answers) =>{
+connection.query(
+  `INSERT INTO departments (department) VALUES(answers.department)`,
+  function(err,resluts) {
+    console.log(resluts);
+    let values = [resluts];
+    console.table([values]);
+  }
+)
+}
+
+// query add Role
+const addRole = () => {
+connection.query(
+  `INSERT INTO roles (  id, title ,salary,department_id ) VALUES(answers.roleName,answers.roleSalary,answers.roleDepartment)`,[id,title,salary,department_id],
+  function(err,resluts) {
+    console.log(resluts);
+    let values = [resluts];
+    console.table([values]);
+  }
+)
+}
 
 
+// query add Employee
+const addEmployee = ()=> {
+
+connection.query(
+  `INSERT INTO employee (first,last,role,manager) VALUES(answers.first,answers.last,answers.role,answers.manager)`,[id,first_name,last_name,role_id,manager_id],
+  function(err,resluts) {
+    console.log(resluts);
+    let values = [resluts];
+    console.table([values]);
+  }
+)
+}
 
 module.exports ={
    allDepartments,
 allRoles,
-viewAllEmployees
+viewAllEmployees,
+addEmployee,
+addRole,
+addDepartment
 }

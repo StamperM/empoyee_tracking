@@ -1,10 +1,17 @@
 
 const optionList= [
+    // {
+    //     type:"confirm",
+    //     name:"kickoff",
+    //     message: "Would you like to use the employee tracker?",
+
+    // },
     {
-        type:"list",
+        type:"choice",
         message:"What would you like to view?",
         choices:["View all departments" ,"View all roles", "View all employees", "Add a department", "Add a role", "Add an employee", "Update an employee role"],
-        name:"selection"
+        name:"selection",
+        when:(answers)=> answers.kickoff === true,
 
     },
 ]
