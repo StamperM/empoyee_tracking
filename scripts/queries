@@ -1,20 +1,58 @@
 
-const showAllEmployees =()=>{
-    app.get('api/employee-tracker/employee',(res,req)=>{
-        const sql=`SELECT * FROM employee`;
-    
-        db.query(sql,(err,rows) => {
-            if(err){
-                res.statusCode(500).json({error:err.message});
-                return;
-            }
-            res.json({message: "succes",
-                       data: body});
-        });
-    }); 
+const mysql = require('mysql2');
+const cTable = require('console.table');
+// create the connection to database
+const connection = mysql.createConnection({
+  host: '127.0.0.1',
+  user: 'root',
+  database: 'tracker_db'
+});
+
+// query all departments
+const allDepartments = () =>{
+connection.query(
+  `SELECT * FROM departments`,
+  function(err, results) {
+    console.log(results); // results contains rows returned by server
+    let values = cTable.getTable([results]);
+console.table([values]);
+  }
+);
 }
 
-const showAllDepartments =() => {
-    app.get('api/employee_tracker/department'(res,req))
 
+  
+   // query all roles
+   const allRoles= () =>{
+    connection.query(
+      `SELECT * FROM roles`,
+      function(err, results) {
+        console.log(results); // results contains rows returned by server
+        let values = [results];
+    console.table([title,salary,department_id],values);
+      }
+    );
+    }
+  
+   // query all employees
+
+   const viewAllEmployees= () =>{
+    connection.query(
+      `SELECT * FROM  employees`,
+      function(err, results) {
+        console.log(results); // results contains rows returned by server
+        let values = [results];
+    console.table([tfirst_name,last_name,role_id,Manager],values);
+      }
+    );
+    }
+  
+//query add department
+
+
+
+module.exports ={
+   allDepartments,
+allRoles,
+viewAllEmployees
 }

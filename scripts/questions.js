@@ -1,10 +1,10 @@
 
 const optionList= [
     {
-        type: "list",
-        message: "What would you like to view?",
-        Choices: ["View all departments", "View all roles", "View all employees", "Add a department", "Add a role", "Add an employee", "Update an employee role"],
-        name: "selection"
+        type:"list",
+        message:"What would you like to view?",
+        choices:["View all departments" ,"View all roles", "View all employees", "Add a department", "Add a role", "Add an employee", "Update an employee role"],
+        name:"selection"
 
     },
 ]
@@ -25,7 +25,6 @@ const newRole=[
         type: "input",
         message: "What is the salary for this role?",
         name: "roleSalary",
-    
     },
     {
         type: "input",
