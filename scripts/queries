@@ -1,97 +1,83 @@
-
-const mysql = require('mysql2');
-const cTable = require('console.table');
+const mysql = require("mysql2/promise");
+const cTable = require("console.table");
 // create the connection to database
 const connection = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
-  database: 'tracker_db',
-  rowsAsArray:true
+  host: "127.0.0.1",
+  user: "root",
+  database: "tracker_db",
+  rowsAsArray: true,
 });
 
-
 // query all departments
-const allDepartments = () =>{
-connection.query(
-  `SELECT * FROM departments`,
-  function(err, results) {
-    console.log(results); // results contains rows returned by server
-    let values = cTable.getTable([results]);
-console.table([values]);
-  }
-);
-}
+const allDepartments = async () => {
+  const connected= await connection;
+  const results = await connected.query(`SELECT * FROM department`);
+  let values = cTable.getTable(results[0]);
+  return values;
+ 
+};
+
+// query all roles
+const allRoles = async () => {
+  const connected =await connection;
+  const results = await connected.query(`SELECT * FROM role`); 
+    let values = cTable.getTable(results[1]);
+    return values;
+  };
 
 
-  
-   // query all roles
-   const allRoles= () =>{
-    connection.query(
-      `SELECT * FROM roles`,
-      function(err, results) {
-        console.log(results); // results contains rows returned by server
-        let values = [results];
-    console.table([title,salary,department_id],values);
-      }
-    );
-    }
-  
-   // query all employees
+// query all employees
 
-   const viewAllEmployees= () =>{
-    connection.query(
-      `SELECT * FROM  employees`,
-      function(err, results) {
-        console.log(results); // results contains rows returned by server
-        let values = [results];
-    console.table([first_name,last_name,role_id,Manager],values);
-      }
-    );
-    }
-  
+const viewAllEmployees = async() => {
+const connected = await connection;
+const results= await connected.query(`SELECT * FROM  employees`,);  
+    let values = cTable.getTable(results[2]);
+    return values;
+};
+
 //query add department
-const addDepartment =(answers) =>{
-connection.query(
-  `INSERT INTO departments (department) VALUES(answers.department)`,
-  function(err,resluts) {
-    console.log(resluts);
-    let values = [resluts];
-    console.table([values]);
-  }
-)
-}
+const addDepartment = async(answers) => {
+  const connected = await connection;
+  const update = await connected.query(
+    `INSERT INTO departments (department) VALUES(answers.department)`);
+    console.log(update)
+    allDepartments()
+    
+    };
+ 
 
 // query add Role
-const addRole = () => {
-connection.query(
-  `INSERT INTO roles (  id, title ,salary,department_id ) VALUES(answers.roleName,answers.roleSalary,answers.roleDepartment)`,[id,title,salary,department_id],
-  function(err,resluts) {
-    console.log(resluts);
-    let values = [resluts];
-    console.table([values]);
-  }
-)
-}
-
+const addRole = async(answers) => {
+  const connected = await
+  connection.query(
+    `INSERT INTO roles (title ,salary,department_id ) VALUES(answers.roleName,answers.roleSalary,answers.roleDepartment)`,
+    [title, salary, department_id],
+    function (err, resluts) {
+      console.log(resluts);
+      let values = [resluts];
+      console.table([values]);
+    }
+  );
+};
 
 // query add Employee
-const addEmployee = ()=> {
+const addEmployee = () => {
+  connection.query(
+    `INSERT INTO employee (first,last,role,manager) VALUES(answers.first,answers.last,answers.role,answers.manager)`,
+    [id, first_name, last_name, role_id, manager_id],
+    function (err, resluts) {
+      console.log(resluts);
+      let values = [resluts];
+      console.table([values]);
+    }
+  );
+};
 
-connection.query(
-  `INSERT INTO employee (first,last,role,manager) VALUES(answers.first,answers.last,answers.role,answers.manager)`,[id,first_name,last_name,role_id,manager_id],
-  function(err,resluts) {
-    console.log(resluts);
-    let values = [resluts];
-    console.table([values]);
-  }
-)
-}
-
-module.exports ={
-   allDepartments,
-allRoles,
-viewAllEmployees,
-addEmployee,
-addRole,
-addDepartment
-}
+module.exports = {
+  allDepartments,
+  allRoles,
+  viewAllEmployees,
+  addEmployee,
+  addRole,
+  addDepartment,
+};

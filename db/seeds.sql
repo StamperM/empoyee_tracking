@@ -1,4 +1,4 @@
-INSERT INTO department(name)
+INSERT INTO department(department)
 VALUES("Discovery"),
         ("Design"),
         ("Development"),
@@ -7,7 +7,7 @@ VALUES("Discovery"),
 
 
 
-INSERT INTO role(title,salary,department_id)
+INSERT INTO roles(title,salary,department_id)
 VALUES("Director",200000.00,1),
       ("Director",200000.00,2),
       ("Director",200000.00,3),
@@ -29,16 +29,16 @@ VALUES("Director",200000.00,1),
 
 
 
-INSERT INTO employee(first_name,last_name,role_id,Manager)
-VALUES("Sarah","Boathouse","Engineer",2),
-      ("Alysa","Conner","Lead",4),
-      ("Jeremy","Freshwater","Engineer",2),
-      ("Fredie","Fishman","Director"),
-      ("Nancy","Catfish","Lead"),
-      ("Roger","RainbowTroute","Product Manager",5),
-      ("Fried","Fish","Analyst",5),
-      ("Libby", "Starfish","CSM",9),
-      ("Levi","Jeans","Lead",10),
-      ("Andrew","Clam","Director"),
-      ("Nic","NeedleFish","Support Associate",10);
+INSERT INTO employee(first_name,last_name,role_id,manager_id)
+VALUES("Sarah","Boathouse",3,2),
+      ("Alysa","Conner",4,4),
+      ("Jeremy","Freshwater",4,2),
+      ("Fredie","Fishman",5,5),
+      ("Nancy","Catfish",1,2),
+      ("Roger","RainbowTroute",3,5),
+      ("Fried","Fish",4,5),
+      ("Libby", "Starfish",4,9),
+      ("Levi","Jeans",3,10),
+      ("Andrew","Clam",1,9),
+      ("Nic","NeedleFish",1,10);
 
