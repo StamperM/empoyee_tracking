@@ -6,8 +6,7 @@ USE tracker_db;
 CREATE TABLE departments (
     id INT NOT NULL AUTO_INCREMENT,
     PRIMARY KEY(id),
-    department VARCHAR(30),
-
+    department VARCHAR(30)
 );
 
 CREATE TABLE roles (
@@ -15,12 +14,7 @@ CREATE TABLE roles (
     title VARCHAR(30),
     salary DECIMAL,
     department_id INT,
-
-    FOREIGN KEY (department_id)
-    REFERENCES departments(id)
-    ON DELETE SET NULL
-
-
+    FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE SET NULL
 );
 
 CREATE TABLE employees(
@@ -29,11 +23,6 @@ CREATE TABLE employees(
     last_name VARCHAR(30),
     role_id INT,
     manager_id INT,
-    FOREIGN KEY (role_id)
-    REFERENCES roles (id)
-    ON DELETE SET NULL,
-    FOREIGN KEY(manager_id)
-    REFERENCES employees(id)
-    ON DELETE SET NULL
-
+    FOREIGN KEY (role_id) REFERENCES roles (id) ON DELETE SET NULL,
+    FOREIGN KEY(manager_id) REFERENCES employees(id) ON DELETE SET NULL
 );
