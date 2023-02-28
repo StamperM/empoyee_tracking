@@ -9,8 +9,6 @@ This application allows a company to be able to track all their employees, depar
 ## Getting Started
 Checkout how to use it by viewing the video.
 
-[Using Employee Tracker]
-
 [Untitled_ Feb 28 2023 5_20 PM.webm](https://user-images.githubusercontent.com/90412072/221995177-6e2f1d59-04ba-4b4f-a1a1-ee707f236191.webm)
 
 
